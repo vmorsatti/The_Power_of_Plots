@@ -65,136 +65,593 @@ ride_data = pd.read_csv('ride_data.csv')
 # Merged csv files into 1 dataframe
 merge_df = pd.merge(ride_data, city_data, on="city")
 
-print(merge_df)
+merge_df.head()
 ```
 
-                        city                 date   fare        ride_id  \
-    0     Lake Jonathanshire  2018-01-14 10:14:22  13.83  5739410935873   
-    1     Lake Jonathanshire  2018-04-07 20:51:11  31.25  4441251834598   
-    2     Lake Jonathanshire  2018-03-09 23:45:55  19.89  2389495660448   
-    3     Lake Jonathanshire  2018-04-07 18:09:21  24.28  7796805191168   
-    4     Lake Jonathanshire  2018-01-02 14:14:50  13.89   424254840012   
-    5     Lake Jonathanshire  2018-04-06 11:30:32  16.84  6164453571846   
-    6     Lake Jonathanshire  2018-03-21 00:18:34  37.95  8353656732934   
-    7     Lake Jonathanshire  2018-01-28 00:07:00   5.67  9756573174778   
-    8     Lake Jonathanshire  2018-01-24 12:24:22  34.65  3319117904437   
-    9     Lake Jonathanshire  2018-03-24 16:27:49  14.94  1670908453476   
-    10    Lake Jonathanshire  2018-04-11 22:10:30  12.81  5999870428814   
-    11    Lake Jonathanshire  2018-01-23 21:43:16  21.11  7711472105447   
-    12    Lake Jonathanshire  2018-01-29 00:19:07  41.05  6649692036139   
-    13    Lake Jonathanshire  2018-03-22 14:33:32  18.72  4675968803527   
-    14    Lake Jonathanshire  2018-04-16 20:26:30  32.47  1013873953228   
-    15    Lake Jonathanshire  2018-04-11 19:49:34  25.92  8533808747676   
-    16    Lake Jonathanshire  2018-04-09 21:41:30  15.96   577276092645   
-    17    Lake Jonathanshire  2018-01-16 09:27:03  26.27  3267656258507   
-    18    Lake Jonathanshire  2018-01-21 12:12:56  37.25  2966536034637   
-    19    Lake Jonathanshire  2018-04-11 21:32:27  22.48  3505458786874   
-    20    Lake Jonathanshire  2018-02-16 01:49:45  17.58  3641777572467   
-    21    Lake Jonathanshire  2018-01-17 13:15:58  28.42  6544222037368   
-    22    Lake Jonathanshire  2018-01-21 09:48:28  22.36  2522096563712   
-    23    Lake Jonathanshire  2018-02-23 06:10:30  26.63  5372487991955   
-    24    South Michelleport  2018-03-04 18:24:09  30.24  2343912425577   
-    25    South Michelleport  2018-03-02 09:54:50  33.12   813844006721   
-    26    South Michelleport  2018-01-08 09:38:14  23.77  4916160406018   
-    27    South Michelleport  2018-04-22 03:15:33  43.62  4663606096929   
-    28    South Michelleport  2018-03-03 16:13:34  41.62  2339775503972   
-    29    South Michelleport  2018-01-27 19:38:12  15.45  7465262064048   
-    ...                  ...                  ...    ...            ...   
-    2345          Newtonview  2018-04-01 13:39:13  26.73  3723530332713   
-    2346          Newtonview  2018-04-25 10:20:13  55.84  9990581345298   
-    2347         North Jaime  2018-03-06 09:09:23  44.17  1152195873170   
-    2348         North Jaime  2018-03-12 13:05:56  23.21  5987447089759   
-    2349         North Jaime  2018-04-04 13:13:40  51.83  9116047435376   
-    2350         North Jaime  2018-02-01 08:59:24  17.05  9481117811603   
-    2351         North Jaime  2018-05-06 00:58:17  41.18  7328094869758   
-    2352         North Jaime  2018-04-04 01:58:37  43.86  8195436622338   
-    2353         North Jaime  2018-04-27 17:58:27  14.01  2156688209209   
-    2354         North Jaime  2018-02-10 21:03:50  11.11  2781339863778   
-    2355         Penaborough  2018-02-24 00:44:00  21.89  2069309881916   
-    2356         Penaborough  2018-04-27 06:02:10  38.33   547013925055   
-    2357         Penaborough  2018-01-14 15:58:48  54.10   432925983890   
-    2358         Penaborough  2018-02-03 17:15:31  51.80  5383427508621   
-    2359         Penaborough  2018-01-22 15:36:24  10.11  4129933467653   
-    2360      Harringtonfort  2018-01-06 07:38:40  47.33  3849747342021   
-    2361      Harringtonfort  2018-02-17 04:42:56  30.58  6835140871685   
-    2362      Harringtonfort  2018-04-16 16:30:50  17.39  4023962353348   
-    2363      Harringtonfort  2018-03-10 10:11:37  19.02  6717313402790   
-    2364      Harringtonfort  2018-02-26 07:03:11  54.66  9201585331171   
-    2365      Harringtonfort  2018-01-09 15:30:35  31.84  3730685356921   
-    2366        West Heather  2018-03-12 04:22:26  26.55  7035849392668   
-    2367        West Heather  2018-02-22 09:01:37  17.40  8702491506161   
-    2368        West Heather  2018-02-22 01:46:43  33.38  5551691454078   
-    2369        West Heather  2018-02-04 16:29:23  13.97  7118893881453   
-    2370        West Heather  2018-04-18 19:33:12  46.60  3671003215967   
-    2371        West Heather  2018-03-02 21:04:10  20.99  5766454453070   
-    2372        West Heather  2018-03-06 20:06:51  48.11  2570548892682   
-    2373        West Heather  2018-02-02 06:28:04  53.07  2462950442268   
-    2374        West Heather  2018-05-07 19:22:15  44.94  4256853490277   
-    
-          driver_count   type  
-    0                5  Urban  
-    1                5  Urban  
-    2                5  Urban  
-    3                5  Urban  
-    4                5  Urban  
-    5                5  Urban  
-    6                5  Urban  
-    7                5  Urban  
-    8                5  Urban  
-    9                5  Urban  
-    10               5  Urban  
-    11               5  Urban  
-    12               5  Urban  
-    13               5  Urban  
-    14               5  Urban  
-    15               5  Urban  
-    16               5  Urban  
-    17               5  Urban  
-    18               5  Urban  
-    19               5  Urban  
-    20               5  Urban  
-    21               5  Urban  
-    22               5  Urban  
-    23               5  Urban  
-    24              72  Urban  
-    25              72  Urban  
-    26              72  Urban  
-    27              72  Urban  
-    28              72  Urban  
-    29              72  Urban  
-    ...            ...    ...  
-    2345             1  Rural  
-    2346             1  Rural  
-    2347             1  Rural  
-    2348             1  Rural  
-    2349             1  Rural  
-    2350             1  Rural  
-    2351             1  Rural  
-    2352             1  Rural  
-    2353             1  Rural  
-    2354             1  Rural  
-    2355             6  Rural  
-    2356             6  Rural  
-    2357             6  Rural  
-    2358             6  Rural  
-    2359             6  Rural  
-    2360             4  Rural  
-    2361             4  Rural  
-    2362             4  Rural  
-    2363             4  Rural  
-    2364             4  Rural  
-    2365             4  Rural  
-    2366             4  Rural  
-    2367             4  Rural  
-    2368             4  Rural  
-    2369             4  Rural  
-    2370             4  Rural  
-    2371             4  Rural  
-    2372             4  Rural  
-    2373             4  Rural  
-    2374             4  Rural  
-    
-    [2375 rows x 6 columns]
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>date</th>
+      <th>fare</th>
+      <th>ride_id</th>
+      <th>driver_count</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-14 10:14:22</td>
+      <td>13.83</td>
+      <td>5739410935873</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-07 20:51:11</td>
+      <td>31.25</td>
+      <td>4441251834598</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-03-09 23:45:55</td>
+      <td>19.89</td>
+      <td>2389495660448</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-07 18:09:21</td>
+      <td>24.28</td>
+      <td>7796805191168</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-02 14:14:50</td>
+      <td>13.89</td>
+      <td>424254840012</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-06 11:30:32</td>
+      <td>16.84</td>
+      <td>6164453571846</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-03-21 00:18:34</td>
+      <td>37.95</td>
+      <td>8353656732934</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-28 00:07:00</td>
+      <td>5.67</td>
+      <td>9756573174778</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-24 12:24:22</td>
+      <td>34.65</td>
+      <td>3319117904437</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-03-24 16:27:49</td>
+      <td>14.94</td>
+      <td>1670908453476</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-11 22:10:30</td>
+      <td>12.81</td>
+      <td>5999870428814</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-23 21:43:16</td>
+      <td>21.11</td>
+      <td>7711472105447</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-29 00:19:07</td>
+      <td>41.05</td>
+      <td>6649692036139</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-03-22 14:33:32</td>
+      <td>18.72</td>
+      <td>4675968803527</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-16 20:26:30</td>
+      <td>32.47</td>
+      <td>1013873953228</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-11 19:49:34</td>
+      <td>25.92</td>
+      <td>8533808747676</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-09 21:41:30</td>
+      <td>15.96</td>
+      <td>577276092645</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-16 09:27:03</td>
+      <td>26.27</td>
+      <td>3267656258507</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-21 12:12:56</td>
+      <td>37.25</td>
+      <td>2966536034637</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-04-11 21:32:27</td>
+      <td>22.48</td>
+      <td>3505458786874</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-02-16 01:49:45</td>
+      <td>17.58</td>
+      <td>3641777572467</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-17 13:15:58</td>
+      <td>28.42</td>
+      <td>6544222037368</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-01-21 09:48:28</td>
+      <td>22.36</td>
+      <td>2522096563712</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Lake Jonathanshire</td>
+      <td>2018-02-23 06:10:30</td>
+      <td>26.63</td>
+      <td>5372487991955</td>
+      <td>5</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>South Michelleport</td>
+      <td>2018-03-04 18:24:09</td>
+      <td>30.24</td>
+      <td>2343912425577</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>South Michelleport</td>
+      <td>2018-03-02 09:54:50</td>
+      <td>33.12</td>
+      <td>813844006721</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>South Michelleport</td>
+      <td>2018-01-08 09:38:14</td>
+      <td>23.77</td>
+      <td>4916160406018</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>South Michelleport</td>
+      <td>2018-04-22 03:15:33</td>
+      <td>43.62</td>
+      <td>4663606096929</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>South Michelleport</td>
+      <td>2018-03-03 16:13:34</td>
+      <td>41.62</td>
+      <td>2339775503972</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>South Michelleport</td>
+      <td>2018-01-27 19:38:12</td>
+      <td>15.45</td>
+      <td>7465262064048</td>
+      <td>72</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2345</th>
+      <td>Newtonview</td>
+      <td>2018-04-01 13:39:13</td>
+      <td>26.73</td>
+      <td>3723530332713</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2346</th>
+      <td>Newtonview</td>
+      <td>2018-04-25 10:20:13</td>
+      <td>55.84</td>
+      <td>9990581345298</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2347</th>
+      <td>North Jaime</td>
+      <td>2018-03-06 09:09:23</td>
+      <td>44.17</td>
+      <td>1152195873170</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2348</th>
+      <td>North Jaime</td>
+      <td>2018-03-12 13:05:56</td>
+      <td>23.21</td>
+      <td>5987447089759</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2349</th>
+      <td>North Jaime</td>
+      <td>2018-04-04 13:13:40</td>
+      <td>51.83</td>
+      <td>9116047435376</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2350</th>
+      <td>North Jaime</td>
+      <td>2018-02-01 08:59:24</td>
+      <td>17.05</td>
+      <td>9481117811603</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2351</th>
+      <td>North Jaime</td>
+      <td>2018-05-06 00:58:17</td>
+      <td>41.18</td>
+      <td>7328094869758</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2352</th>
+      <td>North Jaime</td>
+      <td>2018-04-04 01:58:37</td>
+      <td>43.86</td>
+      <td>8195436622338</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2353</th>
+      <td>North Jaime</td>
+      <td>2018-04-27 17:58:27</td>
+      <td>14.01</td>
+      <td>2156688209209</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2354</th>
+      <td>North Jaime</td>
+      <td>2018-02-10 21:03:50</td>
+      <td>11.11</td>
+      <td>2781339863778</td>
+      <td>1</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2355</th>
+      <td>Penaborough</td>
+      <td>2018-02-24 00:44:00</td>
+      <td>21.89</td>
+      <td>2069309881916</td>
+      <td>6</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2356</th>
+      <td>Penaborough</td>
+      <td>2018-04-27 06:02:10</td>
+      <td>38.33</td>
+      <td>547013925055</td>
+      <td>6</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2357</th>
+      <td>Penaborough</td>
+      <td>2018-01-14 15:58:48</td>
+      <td>54.10</td>
+      <td>432925983890</td>
+      <td>6</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2358</th>
+      <td>Penaborough</td>
+      <td>2018-02-03 17:15:31</td>
+      <td>51.80</td>
+      <td>5383427508621</td>
+      <td>6</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2359</th>
+      <td>Penaborough</td>
+      <td>2018-01-22 15:36:24</td>
+      <td>10.11</td>
+      <td>4129933467653</td>
+      <td>6</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2360</th>
+      <td>Harringtonfort</td>
+      <td>2018-01-06 07:38:40</td>
+      <td>47.33</td>
+      <td>3849747342021</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2361</th>
+      <td>Harringtonfort</td>
+      <td>2018-02-17 04:42:56</td>
+      <td>30.58</td>
+      <td>6835140871685</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2362</th>
+      <td>Harringtonfort</td>
+      <td>2018-04-16 16:30:50</td>
+      <td>17.39</td>
+      <td>4023962353348</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2363</th>
+      <td>Harringtonfort</td>
+      <td>2018-03-10 10:11:37</td>
+      <td>19.02</td>
+      <td>6717313402790</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2364</th>
+      <td>Harringtonfort</td>
+      <td>2018-02-26 07:03:11</td>
+      <td>54.66</td>
+      <td>9201585331171</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2365</th>
+      <td>Harringtonfort</td>
+      <td>2018-01-09 15:30:35</td>
+      <td>31.84</td>
+      <td>3730685356921</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2366</th>
+      <td>West Heather</td>
+      <td>2018-03-12 04:22:26</td>
+      <td>26.55</td>
+      <td>7035849392668</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2367</th>
+      <td>West Heather</td>
+      <td>2018-02-22 09:01:37</td>
+      <td>17.40</td>
+      <td>8702491506161</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2368</th>
+      <td>West Heather</td>
+      <td>2018-02-22 01:46:43</td>
+      <td>33.38</td>
+      <td>5551691454078</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2369</th>
+      <td>West Heather</td>
+      <td>2018-02-04 16:29:23</td>
+      <td>13.97</td>
+      <td>7118893881453</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2370</th>
+      <td>West Heather</td>
+      <td>2018-04-18 19:33:12</td>
+      <td>46.60</td>
+      <td>3671003215967</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2371</th>
+      <td>West Heather</td>
+      <td>2018-03-02 21:04:10</td>
+      <td>20.99</td>
+      <td>5766454453070</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2372</th>
+      <td>West Heather</td>
+      <td>2018-03-06 20:06:51</td>
+      <td>48.11</td>
+      <td>2570548892682</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2373</th>
+      <td>West Heather</td>
+      <td>2018-02-02 06:28:04</td>
+      <td>53.07</td>
+      <td>2462950442268</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>2374</th>
+      <td>West Heather</td>
+      <td>2018-05-07 19:22:15</td>
+      <td>44.94</td>
+      <td>4256853490277</td>
+      <td>4</td>
+      <td>Rural</td>
+    </tr>
+  </tbody>
+</table>
+<p>2375 rows × 6 columns</p>
+</div>
+
 
 
 # Bubble Plot of Ride Sharing Data
@@ -249,7 +706,6 @@ urban_rides_city = merge_df.query('type == "Urban"')
 num_rides_city_urban = urban_rides_city.groupby('city').ride_id.count().tolist()
 # Average Fare ($) 
 ave_fare_urban = urban_rides_city.groupby('city').fare.mean().tolist()
-ave_fare_suburban = suburban_rides_city.groupby('city').fare.mean().tolist()
 # Number of Drivers per City 
 size_urban = urban_rides_city.groupby('city').driver_count.mean().tolist()
 ```
